@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cek Hak Mengemudi</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f6f9;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            width: 400px;
+            box-shadow: 0 0 15px rgba(0,0,0,0.2);
+        }
+
+        h2 {
+            text-align: center;
+            color: #333;
+        }
+
+        label {
+            font-weight: bold;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            margin-bottom: 15px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #2196F3;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        button:hover {
+            background-color: #1976D2;
+        }
+
+        #hasil {
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: 5px;
+            text-align: center;
+            font-weight: bold;
+        }
+
+        .sukses {
+            background-color: #d4edda;
+            color: #155724;
+        }
+
+        .peringatan {
+            background-color: #fff3cd;
+            color: #856404;
+        }
+
+        .gagal {
+            background-color: #f8d7da;
+            color: #721c24;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>Cek Hak Mengemudi</h2>
+
+    <label>Nama</label>
+    <input type="text" id="nama" placeholder="Masukkan Nama">
+
+    <label>Umur</label>
+    <input type="number" id="umur" placeholder="Masukkan Umur">
+
+    <label>Memiliki SIM?</label>
+    <select id="sim">
+        <option value="">-- Pilih --</option>
+        <option value="ya">Ya</option>
+        <option value="tidak">Tidak</option>
+    </select>
+
+    <button onclick="cekMengemudi()">Periksa</button>
+
+    <div id="hasil"></div>
+</div>
+
+<script>
+function cekMengemudi() {
+
+    let nama = document.getElementById("nama").value;
+    let umur = parseInt(document.getElementById("umur").value);
+    let sim = document.getElementById("sim").value;
+
+    let hasil = document.getElementById("hasil");
+
+    if(nama === "" || isNaN(umur) || sim === ""){
+        hasil.className = "gagal";
+        hasil.innerHTML = "Semua data harus diisi!";
+    }
+    else if(umur >= 17 && sim === "ya"){
+        hasil.className = "sukses";
+        hasil.innerHTML =
+        "✅ " + nama + " boleh mengemudi karena sudah cukup umur dan memiliki SIM.";
+    }
+    else if(umur >= 17 && sim === "tidak"){
+        hasil.className = "peringatan";
+        hasil.innerHTML =
+        "⚠️ " + nama + " sudah cukup umur tetapi belum memiliki SIM.";
+    }
+    else{
+        hasil.className = "gagal";
+        hasil.innerHTML =
+        "❌ " + nama + " belum cukup umur untuk mengemudi.";
+    }
+}
+</script>
+
+</body>
+</html>

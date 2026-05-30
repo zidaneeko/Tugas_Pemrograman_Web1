@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Predikat Nilai Mahasiswa</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f6f9;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            width: 420px;
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 15px rgba(0,0,0,0.2);
+        }
+
+        h2 {
+            text-align: center;
+            color: #333;
+        }
+
+        label {
+            font-weight: bold;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            margin-bottom: 15px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            border: none;
+            background: #28a745;
+            color: white;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #218838;
+        }
+
+        #hasil {
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: 5px;
+            font-weight: bold;
+            text-align: center;
+        }
+
+        .lulus {
+            background-color: #d4edda;
+            color: #155724;
+        }
+
+        .cukup {
+            background-color: #fff3cd;
+            color: #856404;
+        }
+
+        .gagal {
+            background-color: #f8d7da;
+            color: #721c24;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+
+    <h2>Predikat Nilai Mahasiswa</h2>
+
+    <label>Nama Mahasiswa</label>
+    <input type="text" id="nama" placeholder="Masukkan nama">
+
+    <label>Nilai</label>
+    <input type="number" id="nilai" placeholder="Masukkan nilai (0-100)">
+
+    <button onclick="prosesNilai()">Tentukan Predikat</button>
+
+    <div id="hasil"></div>
+
+</div>
+
+<script>
+
+    // Function menentukan predikat
+    function predikatNilai(nilai) {
+
+        if (nilai >= 85) {
+            return "A (Sangat Memuaskan)";
+        }
+        else if (nilai >= 75) {
+            return "B (Memuaskan)";
+        }
+        else if (nilai >= 65) {
+            return "C (Cukup)";
+        }
+        else if (nilai >= 50) {
+            return "D (Kurang)";
+        }
+        else {
+            return "E (Gagal)";
+        }
+    }
+
+    // Function untuk memproses input
+    function prosesNilai() {
+
+        let nama = document.getElementById("nama").value;
+        let nilai = parseInt(document.getElementById("nilai").value);
+        let hasil = document.getElementById("hasil");
+
+        if (nama === "" || isNaN(nilai)) {
+            hasil.className = "gagal";
+            hasil.innerHTML = "Semua data harus diisi!";
+            return;
+        }
+
+        let predikat = predikatNilai(nilai);
+
+        if (nilai >= 75) {
+            hasil.className = "lulus";
+        } else if (nilai >= 65) {
+            hasil.className = "cukup";
+        } else {
+            hasil.className = "gagal";
+        }
+
+        hasil.innerHTML =
+            "Nama: <b>" + nama + "</b><br>" +
+            "Nilai: <b>" + nilai + "</b><br>" +
+            "Predikat: <b>" + predikat + "</b>";
+    }
+
+</script>
+
+</body>
+</html>
