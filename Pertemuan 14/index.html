@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<title>Sistem Mahasiswa</title>
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<div class="background"></div>
+
+<div class="container">
+
+    <h1>🎓 Data Mahasiswa</h1>
+
+    <div class="card">
+
+        <div class="form-grid">
+
+            <input type="text" id="nim" placeholder="NIM">
+            <input type="text" id="nama" placeholder="Nama Lengkap">
+
+            <select id="fakultas" onchange="updateJurusan()">
+                <option value="">-- Pilih Fakultas --</option>
+                <option>Fakultas Teknik</option>
+                <option>Fakultas Ilmu Komputer</option>
+                <option>Fakultas Ekonomi dan Bisnis</option>
+                <option>Fakultas Hukum</option>
+                <option>Fakultas Psikologi</option>
+                <option>Fakultas Ilmu Sosial dan Politik</option>
+                <option>Fakultas Desain</option>
+                <option>Fakultas Kedokteran</option>
+                <option>Fakultas Pertanian</option>
+            </select>
+
+            <select id="jurusan">
+                <option value="">-- Pilih Fakultas dulu --</option>
+            </select>
+
+        </div>
+
+        <div class="btn-group">
+            <button class="btn add" onclick="addData()">Tambah</button>
+            <button class="btn update" onclick="updateData()">Update</button>
+        </div>
+
+    </div>
+
+    <div class="card table-card">
+
+        <h2>📋 Riwayat Mahasiswa</h2>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>NIM</th>
+                    <th>Nama</th>
+                    <th>Fakultas</th>
+                    <th>Jurusan</th>
+                    <th>Waktu</th>
+                    <th>Aksi</th>
+                </tr>
+            </thead>
+            <tbody id="tableData"></tbody>
+        </table>
+
+    </div>
+
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
